@@ -68,14 +68,20 @@ router.post("/", async function (req, res, next) {
   const employee = {
     name: req.body.name,
     salary: req.body.salary,
-    vender: req.body.vender,
+    gender: req.body.gender,
     birthdate: req.body.birthdate,
   };
 
   const response = await createEmployee(employee);
 
   // send the result
-  res.send(response);
+  res.status(201).send({
+    id: response.id,
+    name: response.name,
+    salary: response.salary,
+    birthdate: response.birthdate,
+    gender: response.gender,
+  });
 });
 
 // router for getting employee by id
@@ -95,7 +101,7 @@ router.get("/:id", async function (req, res, next) {
     name: employee.name,
     salary: employee.salary,
     birthdate: employee.birthdate,
-    vender: employee.vender,
+    gender: employee.gender,
   });
 });
 
@@ -125,8 +131,8 @@ router.put("/:id", async function (req, res, next) {
     }
     employee.birthdate = req.body.birthdate;
   }
-  if (req.body.vender) {
-    employee.vender = req.body.vender;
+  if (req.body.gender) {
+    employee.gender = req.body.gender;
   }
 
   // update the employee in the database
@@ -143,7 +149,7 @@ router.put("/:id", async function (req, res, next) {
     name: response.name,
     salary: response.salary,
     birthdate: response.birthdate,
-    vender: response.vender,
+    gender: response.gender,
   });
 });
 
@@ -166,10 +172,8 @@ router.delete("/:id", async function (req, res, next) {
     name: response.name,
     salary: response.salary,
     birthdate: response.birthdate,
-    vender: response.vender,
+    gender: response.gender,
   });
 });
-
-
 
 module.exports = router;
