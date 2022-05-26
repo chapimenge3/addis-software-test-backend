@@ -1,2 +1,6 @@
 node_modules/
 .env
+.serverless/cloudformation-template-create-stack.json
+.serverless/addis-software.zip
+.serverless/serverless-state.json
+.serverless/cloudformation-template-update-stack.json
